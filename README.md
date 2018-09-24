@@ -1,11 +1,17 @@
-# Crosspoint Switcher
+# Crosspoint Utils
 
 A simple to use CLI script for interfacing with 300 series CrossPoint devices from Extron.
+
+## Installation
+
+```bash
+npm install -g crosspoint-utils
+```
 
 ## Usage
 
 ```
-crosspoint <command>
+crosspoint-utils <command>
 ```
 
 ## Commands
@@ -49,26 +55,107 @@ crosspoint <command>
 
 ## Examples
 
+Get information about your Extron CrossPoint.
+```bash
+crosspoint-utils info -p /dev/ttyUSB0
 ```
-crosspoint info -p /dev/tty-usbserial1
-crosspoint set-tie -p /dev/tty-usbserial1 -i 1 -o 1
-crosspoint get-tie -p /dev/tty-usbserial1 -o 1
-crosspoint untie -p /dev/tty-usbserial1 -o 1
-crosspoint set-gain -p /dev/tty-usbserial1 -i 1 -g 2
-crosspoint get-gain -p /dev/tty-usbserial1 -i 1
-crosspoint set-vol -p /dev/tty-usbserial1 -o 1 -v 88
-crosspoint get-vol -p /dev/tty-usbserial1 -o 1
-crosspoint video-mute -p /dev/tty-usbserial1 -o 1
-crosspoint video-unmute -p /dev/tty-usbserial1 -o 1
-crosspoint is-video-muted -p /dev/tty-usbserial1 -o 1
-crosspoint audio-mute -p /dev/tty-usbserial1 -o 1
-crosspoint audio-unmute -p /dev/tty-usbserial1 -o 1
-crosspoint is-audio-muted -p /dev/tty-usbserial1 -o 1
-crosspoint save-preset -p /dev/tty-usbserial1 -p 1
-crosspoint recall-preset -p /dev/tty-usbserial1 -p 1
-crosspoint clear-preset -p /dev/tty-usbserial1 -p 1
-crosspoint reset-presets -p /dev/tty-usbserial1
-crosspoint reset-audio-levels -p /dev/tty-usbserial1
-crosspoint reset-mutes -p /dev/tty-usbserial1
-crosspoint system-reset -p /dev/tty-usbserial1
+
+Tie input 3 to output 1.
+```bash
+crosspoint-utils set-tie -p /dev/ttyUSB0 -i 3 -o 1
+```
+
+Get the tie for output 1.
+```bash
+crosspoint-utils get-tie -p /dev/ttyUSB0 -o 1
+```
+
+Remove the tie for output 1.
+```bash
+crosspoint-utils untie -p /dev/ttyUSB0 -o 1
+```
+
+Set the gain to 2 dB for input 4.
+```bash
+crosspoint-utils set-gain -p /dev/ttyUSB0 -i 4 -g 2
+```
+
+Get the current gain for input 3
+```bash
+crosspoint-utils get-gain -p /dev/ttyUSB0 -i 3
+```
+
+Set the volume to output 2 to 88%.
+```bash
+crosspoint-utils set-vol -p /dev/ttyUSB0 -o 2 -v 88
+```
+
+Get the volume of output 2.
+```bash
+crosspoint-utils get-vol -p /dev/ttyUSB0 -o 2
+```
+
+Mute the video of output 1.
+```bash
+crosspoint-utils video-mute -p /dev/ttyUSB0 -o 1
+```
+
+Unmute the video of output 1.
+```bash
+crosspoint-utils video-unmute -p /dev/ttyUSB0 -o 1
+```
+
+Check if the video is muted for output 1.
+```bash
+crosspoint-utils is-video-muted -p /dev/ttyUSB0 -o 1
+```
+
+Mute the audio of output 2.
+```bash
+crosspoint-utils audio-mute -p /dev/ttyUSB0 -o 2
+```
+
+Unmute the audio of output 2.
+```bash
+crosspoint-utils audio-unmute -p /dev/ttyUSB0 -o 2
+```
+
+Check if the audio is muted for output 2.
+```bash
+crosspoint-utils is-audio-muted -p /dev/ttyUSB0 -o 2
+```
+
+Save the current ties to global preset 1.
+```bash
+crosspoint-utils save-preset -p /dev/ttyUSB0 -s 1
+```
+
+Recall the ties of global preset 1.
+```bash
+crosspoint-utils recall-preset -p /dev/ttyUSB0 -s 1
+```
+
+Remove all the ties from global preset 1.
+```bash
+crosspoint-utils clear-preset -p /dev/ttyUSB0 -s 1
+```
+
+Reset all ties back to factory default.
+```bash
+crosspoint-utils reset-presets -p /dev/ttyUSB0
+```
+
+Reset all audio levels back to factory default.
+```bash
+crosspoint-utils reset-audio-levels -p /dev/ttyUSB0
+```
+
+Reset all mutes back to factory default.
+```bash
+crosspoint-utils reset-mutes -p /dev/ttyUSB0
+```
+
+Reset the entire system back to factory default.
+```bash
+crosspoint-utils system-reset -p /dev/ttyUSB0
 ```

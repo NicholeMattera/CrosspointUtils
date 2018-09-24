@@ -1,25 +1,26 @@
 #!/usr/bin/env node
 
-const { Audio, Video } = require('./audioVideo')
-
-const { Info } = require('./commands/info')
-const { SetTie } = require('./commands/set-tie')
-const { GetTie } = require('./commands/get-tie')
-const { Untie } = require('./commands/untie')
-const { SetGain } = require('./commands/set-gain')
-const { GetGain } = require('./commands/get-gain')
-const { SetVol } = require('./commands/set-vol')
-const { GetVol } = require('./commands/get-vol')
-const { Mute } = require('./commands/mute')
-const { Unmute } = require('./commands/unmute')
-const { IsMuted } = require('./commands/is-muted')
-const { SavePreset } = require('./commands/save-preset')
-const { RecallPreset } = require('./commands/recall-preset')
-const { ClearPreset } = require('./commands/clear-preset')
-const { ResetPresets } = require('./commands/reset-presets')
-const { ResetAudioLevels } = require('./commands/reset-audio-levels')
-const { ResetMutes } = require('./commands/reset-mutes')
-const { SystemReset } = require('./commands/system-reset')
+const {
+    AudioVideo,
+    Info,
+    SetTie,
+    GetTie,
+    Untie,
+    SetGain,
+    GetGain,
+    SetVol,
+    GetVol,
+    Mute,
+    Unmute,
+    IsMuted,
+    SavePreset,
+    RecallPreset,
+    ClearPreset,
+    ResetPresets,
+    ResetAudioLevels,
+    ResetMutes,
+    SystemReset
+} = require('../')
 
 require('yargs')
     .demand(1)
@@ -75,37 +76,37 @@ require('yargs')
         'video-mute',
         'Mute the video on a specific output.',
         {},
-        opts => new Mute(opts.path, opts.output, Video)
+        opts => new Mute(opts.path, opts.output, AudioVideo.Video)
     )
     .command(
         'video-unmute',
         'Unmute the video on a specific output.',
         {},
-        opts => new Unmute(opts.path, opts.output, Video)
+        opts => new Unmute(opts.path, opts.output, AudioVideo.Video)
     )
     .command(
         'is-video-muted',
         'Check if an output\'s video is muted.',
         {},
-        opts => new IsMuted(opts.path, opts.output, Video)
+        opts => new IsMuted(opts.path, opts.output, AudioVideo.Video)
     )
     .command(
         'audio-mute',
         'Mute the audio on a specific output.',
         {},
-        opts => new Mute(opts.path, opts.output, Audio)
+        opts => new Mute(opts.path, opts.output, AudioVideo.Audio)
     )
     .command(
         'audio-unmute',
         'Unmute the audio on a specific output.',
         {},
-        opts => new Unmute(opts.path, opts.output, Audio)
+        opts => new Unmute(opts.path, opts.output, AudioVideo.Audio)
     )
     .command(
         'is-audio-muted',
         'Check if an ouput\'s audio is muted.',
         {},
-        opts => new IsMuted(opts.path, opts.output, Audio)
+        opts => new IsMuted(opts.path, opts.output, AudioVideo.Audio)
     )
     .command(
         'save-preset',
@@ -173,7 +174,7 @@ require('yargs')
         },
         gain: {
             alias: 'g',
-            description: 'The audio gain between -18 dB and 24 dB',
+            description: 'The audio gain between -18 dB and 24 dB.',
             global: true,
             requiresArg: true,
             type: 'number'
@@ -207,9 +208,9 @@ require('yargs')
     .example('$0 audio-mute -p /dev/tty-usbserial1 -o 1')
     .example('$0 audio-unmute -p /dev/tty-usbserial1 -o 1')
     .example('$0 is-audio-muted -p /dev/tty-usbserial1 -o 1')
-    .example('$0 save-preset -p /dev/tty-usbserial1 -p 1')
-    .example('$0 recall-preset -p /dev/tty-usbserial1 -p 1')
-    .example('$0 clear-preset -p /dev/tty-usbserial1 -p 1')
+    .example('$0 save-preset -p /dev/tty-usbserial1 -s 1')
+    .example('$0 recall-preset -p /dev/tty-usbserial1 -s 1')
+    .example('$0 clear-preset -p /dev/tty-usbserial1 -s 1')
     .example('$0 reset-presets -p /dev/tty-usbserial1')
     .example('$0 reset-audio-levels -p /dev/tty-usbserial1')
     .example('$0 reset-mutes -p /dev/tty-usbserial1')

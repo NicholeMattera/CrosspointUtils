@@ -1,6 +1,6 @@
 {
   "name": "crosspoint-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple to use CLI script for interfacing with 300 series CrossPoint devices from Extron.",
   "engines": {
     "node": ">=8.0.0"
@@ -16,13 +16,16 @@
     "url": "https://stevenmattera.com"
   },
   "homepage": "https://github.com/StevenMattera/CrosspointUtils",
+  "bugs": "https://github.com/StevenMattera/CrosspointUtils/issues",
   "keywords": [
     "extron",
-    "crosspoint"
+    "crosspoint",
+    "cli"
   ],
   "bin": {
-    "crosspoint-switcher": "./src/index.js"
+    "crosspoint-utils": "./bin/crosspoint-utils.js"
   },
+  "main": "lib",
   "dependencies": {
     "serialport": "^7.0.2",
     "yargs": "^12.0.2"
